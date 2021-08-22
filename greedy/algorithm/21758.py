@@ -1,4 +1,4 @@
-# 꿀 따기
+# 꿀 따기 - 55점 나옴 만점 아님.
 from sys import stdin
 
 n = int(stdin.readline())
