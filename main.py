@@ -2,25 +2,19 @@
 from sys import stdin
 from collections import deque
 
-r, c, n = map(int, stdin.readline().split())
-graph = [list(stdin.readline().strip()) for _ in range(r)]
-que = deque()
+def search_bombs():
+    for x in range(r):
+        for y in range(c):
+            if graph[x][y] == 'O':
+                que.append((x, y))
 
-if n == 1 or (4 <= n and n % 2 != 0):
-    for i in graph:
-        print(''.join(i))
-elif n == 2 or (4 <= n and n % 2 == 0):
-    for _ in range(r):
-        print('OOOOOOO')
-else:
-    for i in range(r):
-        for j in range(c):
-            if graph[i][j] == 'O':
-                que.append((i, j))
-            elif graph[i][j] == '.':
-                graph[i][j] = 'O'
+def make_bombs():
+    for x in range(r):
+        for y in range(c):
+            if graph[x][y] == '.':
+                graph[x][y] = 'O'
 
-
+def explosion():
     while que:
         x, y = que.popleft()
         graph[x][y] = '.'
@@ -33,5 +27,18 @@ else:
         if y + 1 < c:
             graph[x][y + 1] = '.'
 
-    for i in graph:
-        print(''.join(i))
+r, c, n = map(int, stdin.readline().split())
+graph = [list(stdin.readline().strip()) for _ in range(r)]
+que = deque()
+n -= 1
+while n:
+    search_bombs()
+    make_bombs()
+    n -= 1
+    if n == 0:
+        break
+    explosion()
+    n -= 1
+
+for i in graph:
+    print(''.join(i))
