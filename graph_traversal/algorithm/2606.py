@@ -1,7 +1,7 @@
 # 바이러스
 from sys import stdin
 
-def bsf(graph, start, visited):
+def bfs(graph, start, visited):
     global cnt
     visited[start] = True # 방문한 노드는 True로
     for i in graph[start]: # 각 노드안에 연결된 값들을 꺼낸다
@@ -25,6 +25,6 @@ for _ in range(m):
 cnt = 0 # 바이러스에 걸리게 되는 컴퓨터 수
 visited = [False] * (n + 1) # graph의 리스트 갯수만큼의 False 리스트를 만든다.
 
-bsf(graph, 1, visited)
+bfs(graph, 1, visited)
 
 print(cnt)
