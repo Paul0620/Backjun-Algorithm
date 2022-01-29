@@ -53,3 +53,33 @@ class Solution
     }
 }
 """
+n = [[0, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [0, 0, 1, 0]]
+
+
+def solution(board):
+    answer = 0
+
+    for i in board:
+        if sum(i):
+            answer = 1
+            break
+        else:
+            answer = 0
+
+    for i in range(1, len(board)):
+        for j in range(1, len(board[0])):
+            if (
+                board[i - 1][j - 1]
+                and board[i][j - 1]
+                and board[i - 1][j]
+                and board[i][j]
+            ):
+                board[i][j] = (
+                    min(board[i - 1][j - 1], board[i][j - 1], board[i - 1][j]) + 1
+                )
+                answer = max(answer, board[i][j])
+
+    return answer ** 2
+
+
+print(solution(n))

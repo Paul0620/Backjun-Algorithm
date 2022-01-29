@@ -38,6 +38,8 @@ def solution(n):
     for j in range(1, n + 1):
         s += [int("".join(i)) for i in itertools.product(a, repeat=j)]
 
+        print(len(s))
+
         if len(s) > 5000:
             break
 
@@ -46,3 +48,6 @@ def solution(n):
     answer = s[n - 1]
 
     return answer
+
+
+print(solution(5000))

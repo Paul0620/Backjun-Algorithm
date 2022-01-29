@@ -35,3 +35,44 @@ class Solution {
     }
 }
 """
+
+
+n = 6
+
+egg = 1
+retire = 0
+n_list = [0]
+
+for k in range(n):
+    for i in range(retire, len(n_list)):
+        # print(k, n_list)
+        n_list[i] += 1
+
+        age = n_list[i]
+
+        # 알이 아직 태어나지 않았다면
+        if age <= 1:
+            pass
+
+        # 태어난지 4일 이후라면
+        elif age >= 6:
+            retire += 1
+
+        # 생산활동
+        else:
+            n_list.append(0)
+
+print(n_list)
+print(len(n_list))
+
+temp = [0, 0, 0]
+
+for i in n_list:
+    if i >= 6:
+        temp[0] += 1
+    elif i <= 1:
+        temp[2] += 1
+    else:
+        temp[1] += 1
+
+print(temp)

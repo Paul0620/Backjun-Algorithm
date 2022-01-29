@@ -27,25 +27,29 @@ class Solution {
     }
 }
 """
-
-from email import iterators
 import itertools
 
-n = 1
-m = 2
+n = 4
+m = 5
 
 
 def solution(n, m):
-    c = ["(", ")", ")"]
     answer = 0
+    # 1로 이루어진 2차원 배열 생성
+    a_list = [[1 for _ in range(m + 1)] for _ in range(n + 1)]
 
-    t_str = []
-    a = ["(" for _ in range(n)]
-    b = [")" for _ in range(m)]
+    for i in range(len(a_list)):
+        for j in range(len(a_list[i])):
+            # x, y의 이전 값의 합값으로 바꿔주기
+            if i >= 1 and j >= 1:
+                a_list[i][j] = a_list[i][j - 1] + a_list[i - 1][j]
 
-    temp = list(itertools.permutations(c, 3))
+    for h in a_list:
+        print(h)
 
-    print(temp)
+    answer = a_list[n][m]
+
+    print("answer", answer)
 
     return answer
 
